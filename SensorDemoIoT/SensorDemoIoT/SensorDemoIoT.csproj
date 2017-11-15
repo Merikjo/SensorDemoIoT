@@ -110,6 +110,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SampleConfiguration.cs" />
     <Compile Include="Sauna.cs" />
     <Compile Include="SenseHatDemo.cs" />
   </ItemGroup>

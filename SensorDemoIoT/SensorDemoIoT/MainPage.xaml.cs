@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Devices.Gpio;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Core;
@@ -26,6 +27,17 @@ namespace SensorDemoIoT
         public Sauna HouseSauna = new Sauna();
         public Lights LivingRoom = new Lights();
         public Lights Kitchen = new Lights();
+
+        // Use GPIO pin 5 to set values
+        private const int SET_PIN = 5;
+        private GpioPin setPin;
+
+        // Use GPIO pin 6 to listen for value changes
+        private const int LISTEN_PIN = 6;
+        private GpioPin listenPin;
+
+        private GpioPinValue currentValue = GpioPinValue.High;
+        private DispatcherTimer timer;
 
         public MainPage()
         {
@@ -67,9 +79,17 @@ namespace SensorDemoIoT
             });
         }
 
+        internal async void SetScreenText4(string text)
+        {
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                txtBlockHello.Text = text;
+            });
+        }
+
         private void btnHello_Click(object sender, RoutedEventArgs e)
         {
-            txtBlockHello.Text = "Hei, Raspberry!";
+            txtBlockHello.Text = "Hei, Älytalo";
         }
         private void valot_Click(object sender, RoutedEventArgs e)
         {
@@ -83,6 +103,7 @@ namespace SensorDemoIoT
                 RPi.SenseHat.Demo.Demos.MultiColorScrollText(s, this,
                 "Moikka Porvoo!"));
         }
+
 
         //private void sensorit_Click(object sender, RoutedEventArgs e)
         //{
@@ -163,10 +184,102 @@ namespace SensorDemoIoT
             txbKitchen.Text = Kitchen.Dimmer;
         }
 
+        private void btnTemperature_Click(object sender, RoutedEventArgs e)
+        {
+            RPi.SenseHat.Demo.DemoRunner.Run(s => new
+              RPi.SenseHat.Demo.Demos.WriteTemperature(s, this));
+        }
+
         //private void sldLivingRoom_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         //{
         //    txbLivingRoom.Text = sldLivingRoom.Value.ToString() + " %";
         //}
+
+
+        void StartScenario()
+        {
+            // Initialize the GPIO objects.
+            var gpio = GpioController.GetDefault();
+
+            // Set up our GPIO pin for setting values.
+            // If this next line crashes with a NullReferenceException,
+            // then the problem is that there is no GPIO controller on the device.
+            setPin = gpio.OpenPin(SET_PIN);
+
+            // Establish initial value and configure pin for output.
+            setPin.Write(currentValue);
+            setPin.SetDriveMode(GpioPinDriveMode.Output);
+
+            // Set up our GPIO pin for listening for value changes.
+            listenPin = gpio.OpenPin(LISTEN_PIN);
+
+            // Configure pin for input and add ValueChanged listener.
+            listenPin.SetDriveMode(GpioPinDriveMode.Input);
+            listenPin.ValueChanged += Pin_ValueChanged;
+
+            // Start toggling the pin value every 500ms.
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromMilliseconds(500);
+            timer.Tick += Timer_Tick;
+            timer.Start();
+        }
+
+        void StopScenario()
+        {
+            // Stop the timer.
+            if (timer != null)
+            {
+                timer.Stop();
+                timer = null;
+            }
+
+            // Release the GPIO pins.
+            if (setPin != null)
+            {
+                setPin.Dispose();
+                setPin = null;
+            }
+            if (listenPin != null)
+            {
+                listenPin.ValueChanged -= Pin_ValueChanged;
+                listenPin.Dispose();
+                listenPin = null;
+            }
+        }
+
+        void StartStopScenario()
+        {
+
+
+            if (timer != null)
+            {
+                StopScenario();
+                StartStopButton.Content = "Start";
+                ScenarioControls.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            }
+            else
+            {
+                StartScenario();
+                StartStopButton.Content = "Stop";
+                ScenarioControls.Visibility = Windows.UI.Xaml.Visibility.Visible;
+            }
+        }
+        private void Pin_ValueChanged(GpioPin sender, GpioPinValueChangedEventArgs e)
+        {
+            // Report the change in pin value.
+            var task = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                CurrentPinValue.Text = listenPin.Read().ToString();
+            });
+        }
+
+        private void Timer_Tick(object sender, object e)
+        {
+            // Toggle the existing pin value.
+            currentValue = (currentValue == GpioPinValue.High) ? GpioPinValue.Low : GpioPinValue.High;
+            setPin.Write(currentValue);
+        }
+
     }
 }
 

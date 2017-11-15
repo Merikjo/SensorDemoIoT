@@ -95,7 +95,7 @@ namespace RPi.SenseHat.Demo.Demos
 			switch (unit)
 			{
 				case TemperatureUnit.Celcius:
-					return temperatureInCelcius;
+					return temperatureInCelcius -12;
 
 				case TemperatureUnit.Fahrenheit:
 					return temperatureInCelcius * 9 / 5 + 32;
