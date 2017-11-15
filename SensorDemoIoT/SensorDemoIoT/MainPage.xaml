@@ -8,26 +8,84 @@
     mc:Ignorable="d">
 
     <Grid x:Name="BackTable" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button x:Name="btnHello" Content="Say Hello" HorizontalAlignment="Left" Height="111" Margin="106,137,0,0" VerticalAlignment="Top" Width="260" Click="btnHello_Click"/>
-        <TextBlock x:Name="txtBlockHello" HorizontalAlignment="Left" Height="99" Margin="106,248,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="260"/>
-        <TextBox x:Name="Sauna" HorizontalAlignment="Left" Height="54" Margin="101,352,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="227"/>
-        <TextBox x:Name="Olohuone" HorizontalAlignment="Left" Height="54" Margin="422,347,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="212"/>
-        <TextBox x:Name="Keittiö" HorizontalAlignment="Left" Height="54" Margin="717,347,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="198"/>
-        <Button Content="Button" HorizontalAlignment="Left" Height="111" Margin="469,137,0,0" VerticalAlignment="Top" Width="215"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="769,137,0,0" VerticalAlignment="Top" Height="93" Width="202"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="1052,137,0,0" VerticalAlignment="Top" Width="176" Height="93"/>
-        <TextBlock x:Name="txbLivingRoom" HorizontalAlignment="Left" Height="94" Margin="422,401,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="212"/>
-        <TextBlock x:Name="txbKitchen" HorizontalAlignment="Left" Height="89" Margin="717,406,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="198"/>
-        <Button x:Name="btnOlohuoneValotila" Content="ON / OFF" HorizontalAlignment="Left" Height="52" Margin="422,495,0,0" VerticalAlignment="Top" Width="212" FontWeight="Bold"/>
-        <Button x:Name="btnOlohuone33" Content="33" HorizontalAlignment="Left" Height="47" Margin="422,552,0,0" VerticalAlignment="Top" Width="212" FontWeight="Bold"/>
-        <Button x:Name="btnOlohuone66" Content="66" HorizontalAlignment="Left" Margin="422,604,0,0" VerticalAlignment="Top" Width="212" FontWeight="Bold"/>
-        <Button x:Name="btnOlohuone100" Content="100" HorizontalAlignment="Left" Margin="422,641,0,0" VerticalAlignment="Top" Width="212" Height="47" FontWeight="Bold"/>
-        <Button x:Name="btnKitchenTila" Content="On / OFF" HorizontalAlignment="Left" Height="52" Margin="717,495,0,0" VerticalAlignment="Top" Width="198" FontWeight="Bold"/>
-        <Button x:Name="btnKitchen33" Content="33" HorizontalAlignment="Left" Height="47" Margin="717,552,0,0" VerticalAlignment="Top" Width="198"/>
-        <Button x:Name="btnKitchen66" Content="66" HorizontalAlignment="Left" Height="32" Margin="717,604,0,0" VerticalAlignment="Top" Width="198"/>
-        <Button x:Name="btnKitchen100" Content="100" HorizontalAlignment="Left" Height="47" Margin="717,641,0,0" VerticalAlignment="Top" Width="198"/>
-        <Button x:Name="btnSaunaTila" Content="On / OFF" HorizontalAlignment="Left" Margin="101,495,0,0" VerticalAlignment="Top" Width="227" Height="52"/>
-        <TextBlock x:Name="txbSauna" HorizontalAlignment="Left" Height="84" Margin="101,552,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="227"/>
+
+        <TextBox x:Name="txbSauna1" HorizontalAlignment="Left" Margin="280,230,0,0" TextWrapping="Wrap" Text="Sauna" VerticalAlignment="Top" Height="30" Width="182"/>
+        <Button x:Name="button" Content="Say Hello" HorizontalAlignment="Left" Margin="280,74,0,0" VerticalAlignment="Top" Height="70" Width="182" Click="btnHello_Click"/>
+        <Button Width="150" Height="70" Margin="562,72,0,858" Content="Diskovalot" Click="valot_Click"/>
+        <Button Width="150" Height="70" Margin="807,72,0,858" Content="Teksti" Click="teksti_Click"/>
+        <TextBox HorizontalAlignment="Left" Margin="498,230,0,0" TextWrapping="Wrap" Text="Olohuone" VerticalAlignment="Top" Width="143" Height="27"/>
+        <TextBox x:Name="txbKitchen" HorizontalAlignment="Left" Margin="688,230,0,0" TextWrapping="Wrap" Text="Keittiö" VerticalAlignment="Top" Width="150"/>
+        <TextBlock x:Name="txbLivingRoom" HorizontalAlignment="Left" Margin="498,267,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="30" Width="143"/>
+        <TextBlock x:Name="txbKitchen1" HorizontalAlignment="Left" Margin="688,267,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="150" Height="30"/>
+        <Button x:Name="btnSaunaTila" Content="ON / OFF" HorizontalAlignment="Left" Margin="280,313,0,0" VerticalAlignment="Top" Height="42" Width="182" Click="btnSaunaTila_Click"/>
+        <Button x:Name="btnOlohuoneValotila" Content="ON / OFF" HorizontalAlignment="Left" Margin="498,313,0,0" VerticalAlignment="Top" Height="42" Width="143" Click="btnOlohuoneValotila_Click" FontWeight="Bold" Foreground="White">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="#FFE6EDF1" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="btnOlohuone33" Content="33" HorizontalAlignment="Left" Margin="498,360,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.146,-0.359" Width="143" Height="43" Click="btnOlohuone33_Click" FontWeight="Bold" Foreground="White">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="btnOlohuone66" Content="66" HorizontalAlignment="Left" Margin="498,408,0,0" VerticalAlignment="Top" Width="143" RenderTransformOrigin="0.556,-0.844" Click="btnOlohuone66_Click" FontWeight="Bold" Foreground="White">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="btnOlohuone100" Content="100" HorizontalAlignment="Left" Margin="498,445,0,0" VerticalAlignment="Top" Width="143" Height="48" Click="btnOlohuone100_Click" FontWeight="Bold" Foreground="White">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="btnKitchenTila" Content="ON / OFF" HorizontalAlignment="Left" Margin="688,313,0,0" VerticalAlignment="Top" Width="150" Foreground="White" FontWeight="Bold" Click="btnKitchenTila_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="#FFE6EDF1" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="btnKitchen33" Content="33" HorizontalAlignment="Left" Margin="688,360,0,0" VerticalAlignment="Top" Width="150" FontWeight="Bold" Foreground="White" Click="btnKitchen33_Click" Height="43">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="btnKitchen66" Content="66" HorizontalAlignment="Left" Margin="688,410,0,0" VerticalAlignment="Top" Width="150" FontWeight="Bold" Foreground="White" Click="btnKitchen66_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="btnKitchen100" Content="100" HorizontalAlignment="Left" Margin="688,447,0,0" VerticalAlignment="Top" Width="150" FontWeight="Bold" Foreground="White" Click="btnKitchen100_Click" Height="46">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="#FFE6EDF1" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Slider x:Name="sldLivingRoom" HorizontalAlignment="Left" Margin="498,524,0,0" VerticalAlignment="Top" Width="143" SmallChange="0.1" LargeChange="1"/>
+        <Slider HorizontalAlignment="Left" Margin="688,524,0,0" VerticalAlignment="Top" Width="150"/>
+        <TextBlock x:Name="txtBlockHello" HorizontalAlignment="Left" Margin="280,165,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="65" Width="182"/>
+        <TextBlock x:Name="txbSauna" HorizontalAlignment="Left" Margin="280,416,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="59" Width="182"/>
 
     </Grid>
 </Page>

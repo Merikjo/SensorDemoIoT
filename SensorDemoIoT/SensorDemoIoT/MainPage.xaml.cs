@@ -92,7 +92,6 @@ namespace SensorDemoIoT
 
         private void btnSaunaTila_Click(object sender, RoutedEventArgs e)
         {
-
             //RPi.SenseHat.Demo.DemoRunner.Run(s => new
             //   RPi.SenseHat.Demo.Demos.MultiColorScrollText(s, this,
             //   "SAUNA HEAT OFF"));
@@ -109,10 +108,9 @@ namespace SensorDemoIoT
             {
                 HouseSauna.SaunaOn(1);
                 txbSauna.Text = "SAUNA HEAT ON";
-                //        //SaunaTimer.Start();
+                //SaunaTimer.Start();
 
-                //        //CommandManager.InvalidateRequerySuggested();
-
+                //CommandManager.InvalidateRequerySuggested();
             }
         }
 
