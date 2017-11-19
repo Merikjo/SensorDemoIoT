@@ -104,6 +104,12 @@ namespace SensorDemoIoT
                 "Moikka Porvoo!"));
         }
 
+        private void btnJoystick_Click(object sender, RoutedEventArgs e)
+        {
+            RPi.SenseHat.Demo.DemoRunner.Run(s => new
+             RPi.SenseHat.Demo.Demos.JoystickPixel(s, this));
+        }
+
 
         //private void sensorit_Click(object sender, RoutedEventArgs e)
         //{
@@ -113,10 +119,6 @@ namespace SensorDemoIoT
 
         private void btnSaunaTila_Click(object sender, RoutedEventArgs e)
         {
-            //RPi.SenseHat.Demo.DemoRunner.Run(s => new
-            //   RPi.SenseHat.Demo.Demos.MultiColorScrollText(s, this,
-            //   "SAUNA HEAT OFF"));
-
             if (HouseSauna.Switched)
             {
                 HouseSauna.SaunaOn(0);
@@ -124,6 +126,9 @@ namespace SensorDemoIoT
                 //SaunaTimer.Stop();
                 //SaunaOffTimer.Start();
 
+                //RPi.SenseHat.Demo.DemoRunner.Run(s => new
+                //   RPi.SenseHat.Demo.Demos.MultiColorScrollText(s, this,
+                //   "SAUNA OFF"));
             }
             else
             {
@@ -188,6 +193,12 @@ namespace SensorDemoIoT
         {
             RPi.SenseHat.Demo.DemoRunner.Run(s => new
               RPi.SenseHat.Demo.Demos.WriteTemperature(s, this));
+        }
+
+        private void btnGravity_Click(object sender, RoutedEventArgs e)
+        {
+            RPi.SenseHat.Demo.DemoRunner.Run(s => new
+             RPi.SenseHat.Demo.Demos.GravityBlob(s, this));
         }
 
         //private void sldLivingRoom_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
@@ -280,6 +291,7 @@ namespace SensorDemoIoT
             setPin.Write(currentValue);
         }
 
+     
     }
 }
 

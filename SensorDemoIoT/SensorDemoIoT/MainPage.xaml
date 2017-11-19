@@ -92,14 +92,18 @@
         <Slider HorizontalAlignment="Left" Margin="688,524,0,0" VerticalAlignment="Top" Width="150"/>
         <TextBlock x:Name="txtBlockHello" HorizontalAlignment="Left" Margin="280,165,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="65" Width="182"/>
         <TextBlock x:Name="txbSauna" HorizontalAlignment="Left" Margin="280,267,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="30" Width="140"/>
-        <Button x:Name="btnTemperature" Content="Button" HorizontalAlignment="Left" Margin="890,230,0,0" VerticalAlignment="Top" Width="104" Click="btnTemperature_Click"/>
+        <Button x:Name="btnTemperature" Content="TEMPERATURE" HorizontalAlignment="Left" Margin="890,230,0,0" VerticalAlignment="Top" Width="145" Click="btnTemperature_Click"/>
 
 
-        <Button x:Name="StartStopButton" Content="VALOT ON / OFF" HorizontalAlignment="Left" Height="46" Margin="890,297,0,0" VerticalAlignment="Top" Width="104" Click="{x:Bind StartStopScenario}"/>
+        <Button x:Name="StartStopButton" Content="VALOT ON / OFF" HorizontalAlignment="Left" Height="46" Margin="890,297,0,0" VerticalAlignment="Top" Width="145" Click="{x:Bind StartStopScenario}"/>
         <StackPanel x:Name="ScenarioControls" Visibility="Collapsed">
             <TextBlock Margin="0,10,0,0">
                         Pin value: <Run x:Name="CurrentPinValue" />
             </TextBlock>
         </StackPanel>
+        <Button x:Name="btnJoystick" Content="JOYSTICK" HorizontalAlignment="Left" Height="40" Margin="890,380,0,0" VerticalAlignment="Top" Width="145" Click="btnJoystick_Click"/>
+        <Button x:Name="btnGravity" Content="GRAVITY" HorizontalAlignment="Left" Height="43" Margin="890,460,0,0" VerticalAlignment="Top" Width="145" Click="btnGravity_Click"/>
+        <Button Content="Button" HorizontalAlignment="Left" Height="70" Margin="280,390,0,0" VerticalAlignment="Top" Width="100"/>
+        <Button Content="Button" HorizontalAlignment="Left" Height="65" Margin="280,503,0,0" VerticalAlignment="Top" Width="100"/>
     </Grid>
 </Page>
