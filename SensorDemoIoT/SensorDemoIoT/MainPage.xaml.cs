@@ -23,6 +23,7 @@ namespace SensorDemoIoT
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class MainPage : Page
+      
     {
         public Sauna HouseSauna = new Sauna();
         public Lights LivingRoom = new Lights();
@@ -41,6 +42,7 @@ namespace SensorDemoIoT
 
         public MainPage()
         {
+
             this.InitializeComponent();
             txbLivingRoom.Text = "OFF";
             txbKitchen.Text = "OFF";
@@ -51,6 +53,7 @@ namespace SensorDemoIoT
         {
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
+               
                 txtBlockHello.Text = text;
             });
         }
@@ -59,6 +62,7 @@ namespace SensorDemoIoT
         {
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
+
                 txbSauna.Text = text;
             });
         }
