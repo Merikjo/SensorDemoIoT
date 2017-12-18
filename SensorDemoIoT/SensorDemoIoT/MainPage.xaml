@@ -9,7 +9,7 @@
 
     <Grid x:Name="BackTable" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-        <Image x:Name="imgTausta" HorizontalAlignment="Left" Height="584" Margin="204,72,0,0" VerticalAlignment="Top" Width="923" Source="Images/jaatausta.jpg">
+        <Image x:Name="imgTausta" HorizontalAlignment="Left" Height="584" Margin="167,74,0,0" VerticalAlignment="Top" Width="923" Source="Images/jaatausta.jpg">
         </Image>
 
         <TextBox x:Name="txtSauna" HorizontalAlignment="Left" Margin="280,230,0,0" TextWrapping="Wrap" Text="Sauna" VerticalAlignment="Top" Height="30" Width="140"/>
@@ -103,7 +103,6 @@
         </StackPanel>
         <Button x:Name="btnJoystick" Content="JOYSTICK" HorizontalAlignment="Left" Height="40" Margin="890,380,0,0" VerticalAlignment="Top" Width="145" Click="btnJoystick_Click"/>
         <Button x:Name="btnGravity" Content="GRAVITY" HorizontalAlignment="Left" Height="43" Margin="890,460,0,0" VerticalAlignment="Top" Width="145" Click="btnGravity_Click"/>
-        <Button Content="Button" HorizontalAlignment="Left" Height="70" Margin="280,390,0,0" VerticalAlignment="Top" Width="100"/>
-        <Button Content="Button" HorizontalAlignment="Left" Height="65" Margin="280,503,0,0" VerticalAlignment="Top" Width="100"/>
+        <TextBox HorizontalAlignment="Left" Margin="280,531,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
     </Grid>
 </Page>

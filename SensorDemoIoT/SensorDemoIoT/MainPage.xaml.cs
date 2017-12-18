@@ -14,6 +14,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.Web.Http;
+
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -23,7 +25,7 @@ namespace SensorDemoIoT
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class MainPage : Page
-      
+
     {
         public Sauna HouseSauna = new Sauna();
         public Lights LivingRoom = new Lights();
@@ -39,21 +41,20 @@ namespace SensorDemoIoT
 
         private GpioPinValue currentValue = GpioPinValue.High;
         private DispatcherTimer timer;
+        private DispatcherTimer remoteCommandtimer;
 
         public MainPage()
         {
-
             this.InitializeComponent();
             txbLivingRoom.Text = "OFF";
             txbKitchen.Text = "OFF";
-
         }
 
         internal async void SetScreenText(string text)
         {
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-               
+
                 txtBlockHello.Text = text;
             });
         }
@@ -237,6 +238,12 @@ namespace SensorDemoIoT
             timer.Interval = TimeSpan.FromMilliseconds(500);
             timer.Tick += Timer_Tick;
             timer.Start();
+
+            // Start toggling the pin value every 10000ms.
+            remoteCommandtimer = new DispatcherTimer();
+            remoteCommandtimer.Interval = TimeSpan.FromSeconds(10);
+            remoteCommandtimer.Tick += getRemoteCommand;
+            remoteCommandtimer.Start();
         }
 
         void StopScenario()
@@ -264,8 +271,6 @@ namespace SensorDemoIoT
 
         void StartStopScenario()
         {
-
-
             if (timer != null)
             {
                 StopScenario();
@@ -295,7 +300,31 @@ namespace SensorDemoIoT
             setPin.Write(currentValue);
         }
 
-     
+        private async void getRemoteCommand(object sender, object e)
+        {
+            //var uri = new Uri("http://example.com/datalist.aspx");
+
+            var uri = new Uri("http://localhost:37413/command/getAvailable/");//localhost
+            var httpClient = new HttpClient();
+         
+            // Always catch network exceptions for async methods
+            try
+            {
+                var result = await httpClient.GetStringAsync(uri);
+                if (result != "")
+                {
+                    if (result == "SaunaOn")
+                    {
+                        btnSaunaTila_Click(null, null);
+                    }
+                }
+            }
+            catch
+            {
+                // Details in ex.Message and ex.HResult.       
+            }
+
+        }
     }
 }
 
